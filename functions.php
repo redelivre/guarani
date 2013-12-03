@@ -219,10 +219,10 @@ add_action( 'wp_footer', 'guarani_footer_scripts' );
  */
 function guarani_activate_plugins() {
     
-    if ( ! current_user_can( 'activate_plugins' ) )
-        return;
+    /*if ( ! current_user_can( 'activate_plugins' ) )
+        return;*/
         
-    $plugins = FALSE;
+    $plugins = array();
     $plugins = get_option( 'active_plugins' );
     
     if ( $plugins ) {
@@ -230,16 +230,26 @@ function guarani_activate_plugins() {
     	// The plugin list
         $pugins_to_active = array(
             'eletro-widgets/eletro-widgets.php', 
-            'akismet/akismet.php'
         );
         
         foreach ( $pugins_to_active as $plugin ) {
             if ( ! in_array( $plugin, $plugins ) ) {
                 array_push( $plugins, $plugin );
                 update_option( 'active_plugins', $plugins );
-                do_action('activate_' . basename($plugin));
+                do_action('activate_' . basename($plugin)); // TODO Não vai funcionar se o nome do plugin for diferente do nome do arquivo
             }
         }
+        
+        $plugins_ativados = get_option( 'active_plugins' );
+        foreach ($pugins_to_active as $pugin_to_active)
+        {
+	        if(!in_array($pugin_to_active, $plugins_ativados))
+	        {
+	        	wp_die(__("Erro ao ativar plugins para funcionamento do tema", "guarani").print_r($plugins_ativados, true));
+	        }
+        }
+        
+        
         $role = get_role('administrator');
         $role->add_cap('manage_eletro_widgets');
     }
@@ -262,4 +272,5 @@ function lock_plugins( $actions, $plugin_file, $plugin_data, $context ) {
   
 }
 add_filter( 'plugin_action_links', 'lock_plugins', 10, 4 );
+
 ?>
