@@ -264,3 +264,66 @@ function guarani_category_transient_flusher() {
 }
 add_action( 'edit_category', 'guarani_category_transient_flusher' );
 add_action( 'save_post', 'guarani_category_transient_flusher' );
+
+/**
+ * Display the map
+ *
+ * @since guarani 1.0
+ */
+function guarani_the_map() {
+
+	if(function_exists('mapasdevista_view'))
+	{
+		mapasdevista_view();
+	}
+
+}
+
+/**
+ * Display the map filters
+ *
+ * @since guarani 1.0
+ *
+function guarani_the_map_filters() {
+
+	if(function_exists('mapasdevista_view'))
+	{
+		?>
+		<div id="map-filters">
+			<div id="filter-cycle-prev" class="filter-cycle-prev cycle-prev filter-cycle-button" ></div>
+		<?php
+			mapasdevista_view_filters('filter', array('data'));
+		?>
+			<div id="filter-cycle-next" class="filter-cycle-next cycle-next filter-cycle-button" ></div>
+			<div id="filter-link-to-map" class="filter-link-to-map" ><a href="<?php echo get_bloginfo('url').'/mapa'; ?>">Veja o mapa completo</a></div>
+		</div>
+		<?php
+	}
+}
+
+add_action('wp_enqueue_scripts', 'guarani_map_scritps');
+
+function guarani_map_scritps()
+{
+	if(function_exists('mapasdevista_view') && !get_query_var('mapa-tpl'))
+	{
+		wp_enqueue_script('jquery-cycle2', get_template_directory_uri() . '/js/jquery.cycle2.min.js', array('jquery'));
+		wp_enqueue_script('jquery-cycle2-carousel', get_template_directory_uri() . '/js/jquery.cycle2.carousel.min.js', array('jquery-cycle2'));
+		wp_enqueue_script('jquery-cycle2-swipe', get_template_directory_uri() . '/js/jquery.cycle2.swipe.min.js', array('jquery-cycle2'));
+		wp_enqueue_script('map_filters_scroller', get_template_directory_uri() . '/js/map_filters_scroller.js', array('jquery-cycle2'));
+	}
+}
+
+function guarani_mapasdevista_filters_label($label)
+{
+	$ikey = filter_var($label, FILTER_SANITIZE_NUMBER_INT);
+	if(intval($ikey) > 0)
+	{
+		return substr($ikey, 0, 2).'/'.substr($ikey, 2);// TODO arrumar um jeito de definir para datas
+	}
+	return $label;
+}
+add_filter('mapasdevista_filters_label', 'guarani_mapasdevista_filters_label');
+*/
+?>
+

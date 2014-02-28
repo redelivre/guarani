@@ -2309,3 +2309,118 @@ Flexslider guarani prev e next
 	height: 21px !important;
 	background: url('images/seta-direita.png') !important;
 }
+
+/* ==========================================================================
+   - Map
+   ========================================================================== */
+.map {
+	height: 400px;
+	overflow: hidden;
+}
+
+.map-filters {
+	margin-bottom: 3em;
+}
+
+#map-filters #filters ul {
+	margin: 0;
+	padding:0px;
+	list-style:none;
+}
+
+#map-filters #filters ul li {
+	display: inline-block;
+	width: 100%;
+}
+
+#map-filters #filters ul li {
+	background-color: #eaedca;
+}
+
+#map-filters #filters ul li ul li {
+	width: auto;
+}
+
+#map-filters #filters ul li ul li:nth-child(odd) {
+	background-color: #ffffff;
+	
+}
+
+#map-filters #filters ul li ul li:nth-child(even) {
+	background-color: #eaedca;
+}
+
+#map-filters #filters ul li label {
+	display: none;
+	padding: 5px 8px;
+}
+
+#map-filters #filters ul li label:hover {
+	cursor: pointer;
+	background-color: #f16d66;
+	color: #fff;
+}
+
+#map-filters #filters ul li ul li label {
+	display: block;
+}
+
+#map-filters #filters input {
+	display: none;
+}
+
+#map-filters #filters :checked + label {
+   background-color: #ed4037;
+   color: #fff;
+}
+
+#map-filters #filter-link-to-map {
+	float: right;
+	width: 17%;
+}
+
+#map-filters .filter-cycle-button {
+	float:left;
+	width: 3%;
+	height: 34px;
+}
+
+#map-filters .filter-cycle-next {
+	background-image: url("images/dir.png");
+	background-size: auto 34px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#map-filters .filter-cycle-prev {
+	background-image: url("images/esq.png");
+	background-size: auto 34px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#map-filters #filters {
+	width: 76%;
+	float: left;
+	font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #ed4037;
+}
+
+#map-filters #filter-link-to-map {
+	padding: 0;
+	margin-right: 0;
+}
+
+#map-filters #filter-link-to-map a {
+	background-color: #ed4037;
+	padding: 5px 8px 5px 6px;
+	color: #fff;
+	display: block;
+}
+
+#map-filters #map-filters {
+	padding: 0;
+	width: 100%;
+}
+
+

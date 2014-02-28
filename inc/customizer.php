@@ -280,7 +280,24 @@ function guarani_customize_register( $wp_customize ) {
         'settings' 	=> 'guarani_font_pairing'
     ) );
     */
-	
+	if(function_exists('mapasdevista_view'))
+	{
+	    $wp_customize->add_section( 'guarani_map', array(
+	    		'title'    => __( 'Mapa', 'guarani' ),
+	    		'priority' => 30,
+	    ) );
+	    $wp_customize->add_setting( 'guarani_display_home_map', array(
+	    		'capability' => 'edit_theme_options',
+	    ) );
+	    
+	    $wp_customize->add_control( 'guarani_display_home_map', array(
+	    		'label'    => __( 'Display Map at Home Page', 'guarani' ),
+	    		'section'  => 'guarani_map',
+	    		'type'     => 'checkbox',
+	    		'settings' => 'guarani_display_home_map'
+	    ) );
+	}
+    
 }
 add_action( 'customize_register', 'guarani_customize_register' );
 
