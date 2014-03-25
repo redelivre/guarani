@@ -284,6 +284,8 @@ function guarani_the_map() {
  *
  * @since guarani 1.0
  *
+ */
+/*
 function guarani_the_map_filters() {
 
 	if(function_exists('mapasdevista_view'))
@@ -325,5 +327,3 @@ function guarani_mapasdevista_filters_label($label)
 }
 add_filter('mapasdevista_filters_label', 'guarani_mapasdevista_filters_label');
 */
-?>
-
