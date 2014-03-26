@@ -412,14 +412,22 @@ add_action( 'customize_preview_init', 'guarani_customize_preview_js' );
  */
 function guarani_admin_customizer_menu_link() {
 
-global $menu;
+	global $menu, $submenu;
 
-	if ( current_user_can( 'edit_theme_options' ) ) {
-		// In main menu
-		add_menu_page( sprintf( __( 'Customize', 'default' ), get_bloginfo( 'blogname' ) ), sprintf( __( 'Customize', 'default' ), get_bloginfo( 'blogname' ) ), 'edit_theme_options', 'customize.php?url=index.php', '', '', '99.2' );
-		
-		// Inside Appearance submenu
-		add_theme_page( __( 'Customize', 'default' ), __( 'Customize', 'default' ), 'edit_theme_options', 'customize.php' );
+    $customizer_menu = false;
+    $customizer_link = 'customize.php';
+    
+    // Check if there's already a submenu for customize.php
+    foreach( $submenu as $k => $item ) {
+	    foreach( $item as $sub ) {
+	    	if( $customizer_link == $sub[2] ) {
+	        	$customizer_menu = true;
+	      	}
+	    }
+    }
+
+    if ( ! $customizer_menu && current_user_can( 'edit_theme_options' ) ) {
+	    add_theme_page( __( 'Customize', 'default' ), __( 'Customize', 'default' ), 'edit_theme_options', $customizer_link );
 	}
 
 }
