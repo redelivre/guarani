@@ -1,6 +1,5 @@
 <?php
 /**
-
  * Guarani Customizer
  *
  * @since Guarani 1.0
@@ -153,7 +152,6 @@ function guarani_customize_register( $wp_customize ) {
         }
 
 	}
-
 	
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
@@ -257,29 +255,32 @@ function guarani_customize_register( $wp_customize ) {
     /*
 	 * Typography
 	 */
-	/* 
+	
 	$wp_customize->add_section( 'guarani_typography', array(
-		'title'    => __( 'Typography', 'guarani' ),
+		'title'    => __( 'Typography (beta)', 'guarani' ),
 		'priority' => 30,
 	) );
-	
-	// Typography: font pairing
-	$wp_customize->add_setting( 'guarani_font_pairing', array(
-		'default'    	=> 'value1',
-		'capability'    => 'edit_theme_options',
-	) );
-	
-    $wp_customize->add_control( 'guarani_font_pairing', array(
-        'label'   	=> __( 'Font pairing', 'guarani' ),
-        'type'     	=> 'radio',
-		'choices'   => array(
-			'value1'	=> __( 'Default pairing', 'guarani' ),
-			'value2'	=> __( 'Sans-serif', 'guarani' ),
-		),
-        'section'	=> 'guarani_typography',
-        'settings' 	=> 'guarani_font_pairing'
+   
+    $wp_customize->add_setting( 'guarani_font_main', array(
+       'sanitize_callback' => 'guarani_font_values'
     ) );
-    */
+
+    $wp_customize->add_control( 'guarani_font_main', array(
+        'label'    => __( 'Main Font', 'guarani' ),
+        'section'  => 'guarani_typography',
+        'type'     => 'select',
+        'choices'  => array(
+        	'default' 				=> __( 'Default', 'guarani' ),
+        	'Amaranth:400,700' 		=> __( 'Amaranth', 'guarani' ),
+        	'Arvo:400,700,400' 		=> __( 'Arvo', 'guarani' ),
+        	'Lato:400,700' 			=> __( 'Lato', 'guarani' ),
+        	'Noticia+Text:400,700' 	=> __( 'Noticia Text', 'guarani' ),
+        	'Special+Elite:400' 	=> __( 'Special Elite', 'guarani' )
+ 		),
+        'priority' => 5,
+        'setting' => 'guarani_font_main'
+    ) );
+
 	if(function_exists('mapasdevista_view'))
 	{
 	    $wp_customize->add_section( 'guarani_map', array(
@@ -303,6 +304,33 @@ add_action( 'customize_register', 'guarani_customize_register' );
 
 
 /**
+ * Get dropdown value (font + its weight) and transform in an array
+ * 
+ * @param  string $value The select value
+ * @return array $value An array with the font code, its weight and its name
+ */
+function guarani_font_values( $value ) {
+
+    if ( $value == 'default' || is_array( $value ) )
+    	return $value;
+
+    // Font URL
+    $new_value['url'] = $value;
+
+	// Name
+	$font_string = strstr( $value, ':', true );
+    $new_value['name'] = str_replace( '+', ' ', $font_string );
+
+    // Font weight
+    $new_value['weight'] = strstr( $value, ':' );
+
+    $value = $new_value;
+
+    return $value;
+}
+
+
+/**
  * This will output the custom WordPress settings to the live theme's WP head.
  * 
  * Used for inline custom CSS
@@ -313,7 +341,37 @@ function guarani_customize_css()
 {
 	?>
 	<!-- Customize CSS -->
+	<?php
+	// Main font
+	$font_css = get_theme_mod( 'guarani_font_main' );
+
+	//print_r($font_css);
+
+	if ( is_array( $font_css ) ) : ?>
+		<link href='http://fonts.googleapis.com/css?family=<?php echo $font_css['url']; ?>' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			blockquote,
+			.main-navigation a,
+			.entry-meta,
+			.entry-title,
+			.site-content .site-navigation,
+			.comment-author,
+			.widget-title,
+			.eletro_widgets_content h2 {
+				font-family: <?php echo $font_css['name']; ?>, serif;
+			}
+		</style>
+	<?php
+	endif;
+	?>
 	<style type="text/css">
+
 		<?php if ( get_theme_mod( 'guarani_display_header_text' ) == '' ) : ?>
 		/* Header text */
 		.site-title,
