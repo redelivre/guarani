@@ -9,7 +9,7 @@
 
 
 
-add_action( 'wp_insert_post', array( 'FeaturedVideo', 'init' ) );
+add_action( 'wp_insert_post', array( 'FeaturedVideo', 'wp_insert_post' ) );
 
 /**
  * @package oEmbed_Featured_Image
@@ -117,6 +117,11 @@ class FeaturedVideo
 
         }
         
+    }
+    
+    public static function wp_insert_post($post_id)
+    {
+    	return new FeaturedVideo( $post_id );
     }
     
 }
