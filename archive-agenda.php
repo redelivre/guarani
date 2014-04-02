@@ -7,7 +7,7 @@
  */
  
 global $paged;
-$showing_past = ($paged > 0 || $_GET['eventos'] == 'passados');
+$showing_past = ($paged > 0 || (array_key_exists('eventos', $_GET) && $_GET['eventos'] == 'passados'));
 
 get_header(); ?>
 
