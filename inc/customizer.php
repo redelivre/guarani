@@ -297,6 +297,16 @@ function guarani_customize_register( $wp_customize ) {
 	    		'type'     => 'checkbox',
 	    		'settings' => 'guarani_display_home_map'
 	    ) );
+	    $wp_customize->add_setting( 'guarani_display_home_map_filters', array(
+	    		'capability' => 'edit_theme_options',
+	    ) );
+	     
+	    $wp_customize->add_control( 'guarani_display_home_map_filters', array(
+	    		'label'    => __( 'Display Map Filters at Home Page', 'guarani' ),
+	    		'section'  => 'guarani_map',
+	    		'type'     => 'checkbox',
+	    		'settings' => 'guarani_display_home_map_filters'
+	    ) );
 	}
     
 }
@@ -402,6 +412,7 @@ add_action( 'wp_head', 'guarani_customize_css' );
  */
 function guarani_customize_preview_js() {
 	wp_enqueue_script( 'guarani-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20120523', true );
+	wp_enqueue_script( 'guarani-customizer-map', get_template_directory_uri() . '/js/customizer-map.js', array( 'jquery' ), '20140410', true );
 }
 add_action( 'customize_preview_init', 'guarani_customize_preview_js' );
 

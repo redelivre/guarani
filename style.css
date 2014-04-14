@@ -2328,30 +2328,16 @@ Flexslider guarani prev e next
 	list-style:none;
 }
 
-#map-filters #filters ul li {
-	display: inline-block;
+#map-filters #filters ul {
 	width: 100%;
 }
 
 #map-filters #filters ul li {
-	background-color: #eaedca;
-}
-
-#map-filters #filters ul li ul li {
 	width: auto;
 }
 
-#map-filters #filters ul li ul li:nth-child(odd) {
-	background-color: #ffffff;
-	
-}
-
-#map-filters #filters ul li ul li:nth-child(even) {
-	background-color: #eaedca;
-}
-
 #map-filters #filters ul li label {
-	display: none;
+	
 	padding: 5px 8px;
 }
 
@@ -2361,7 +2347,7 @@ Flexslider guarani prev e next
 	color: #fff;
 }
 
-#map-filters #filters ul li ul li label {
+#map-filters #filters ul li label {
 	display: block;
 }
 
@@ -2422,5 +2408,7 @@ Flexslider guarani prev e next
 	padding: 0;
 	width: 100%;
 }
+
+
 
 

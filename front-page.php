@@ -12,8 +12,11 @@ get_header(); ?>
 	<?php
 	if( function_exists('mapasdevista_view') && get_theme_mod('guarani_display_home_map') == 1 )
 	{?>
-		<div class="map clear"><?php guarani_the_map(); ?></div>
-		<?php /* <div class="map-filters clear"><?php guarani_the_map_filters(); ?></div><?php */
+		<div class="map clear"><?php guarani_the_map(); ?></div><?php
+		if(get_theme_mod('guarani_display_home_map_filters') == 1)
+		{
+			?><div class="map-filters clear"><?php guarani_the_map_filters(); ?></div><?php
+		}
 	} 
 	else
 	{
