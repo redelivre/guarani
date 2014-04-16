@@ -296,7 +296,9 @@ function guarani_the_map_filters() {
 			mapasdevista_view_filters('categoria-mapa');
 		?>
 			<div id="filter-cycle-next" class="filter-cycle-next cycle-next filter-cycle-button" ></div>
-			<div id="filter-link-to-map" class="filter-link-to-map" ><a href="<?php echo get_bloginfo('url').'/mapa'; ?>">Veja o mapa completo</a></div>
+			<div id="filter-link-to-map" class="filter-link-to-map" ><a href="<?php echo get_bloginfo('url').'/mapa'; ?>">
+				<img src="<?php echo get_template_directory_uri().'/images/expand.png'; ?>" alt="<?php _e('Veja o mapa completo', 'guarani'); ?>" title="<?php _e('Veja o mapa completo', 'guarani'); ?>" />
+			</a></div>
 		</div>
 		<?php
 	}

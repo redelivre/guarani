@@ -2337,13 +2337,13 @@ Flexslider guarani prev e next
 }
 
 #map-filters #filters ul li label {
-	
 	padding: 5px 8px;
+	background-color: #daccab;
 }
 
 #map-filters #filters ul li label:hover {
 	cursor: pointer;
-	background-color: #f16d66;
+	background-color: #8f2634;
 	color: #fff;
 }
 
@@ -2356,40 +2356,43 @@ Flexslider guarani prev e next
 }
 
 #map-filters #filters :checked + label {
-   background-color: #ed4037;
+   background-color: #8f2634;
    color: #fff;
 }
 
 #map-filters #filter-link-to-map {
 	float: right;
-	width: 17%;
+	width: 4%;
+	max-width: 36px;
 }
 
 #map-filters .filter-cycle-button {
 	float:left;
 	width: 3%;
-	height: 34px;
+	height: 36px;
 }
 
 #map-filters .filter-cycle-next {
 	background-image: url("images/dir.png");
-	background-size: auto 34px;
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-color: #daccab;
+	cursor: pointer;
 }
 
 #map-filters .filter-cycle-prev {
 	background-image: url("images/esq.png");
-	background-size: auto 34px;
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-color: #daccab;
+	cursor: pointer;
 }
 
 #map-filters #filters {
-	width: 76%;
+	width: 90%;
 	float: left;
-	font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #ed4037;
+	color: #8f2634;
+	font-weight: bold;
 }
 
 #map-filters #filter-link-to-map {
@@ -2398,7 +2401,7 @@ Flexslider guarani prev e next
 }
 
 #map-filters #filter-link-to-map a {
-	background-color: #ed4037;
+	background-color: #8f2634;
 	padding: 5px 8px 5px 6px;
 	color: #fff;
 	display: block;

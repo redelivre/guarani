@@ -157,3 +157,28 @@ h1, h2, h3, h4, h5, h6,
 #tertiary .widget_guarani_custom_posts ul li {
 	border-color: #d0d0d0;
 }
+
+#map-filters #filters ul li label {
+	background-color: #e1ead4;
+}
+#map-filters #filters ul li label:hover {
+	background-color: #699328;
+}
+#map-filters #filters :checked + label {
+	background-color: #699328;
+}
+
+#map-filters .filter-cycle-next {
+	background-color: #e1ead4;
+}
+
+#map-filters .filter-cycle-prev {
+	background-color: #e1ead4;
+}
+
+#map-filters #filters {
+	color: #699328;
+}
+#map-filters #filter-link-to-map a {
+	background-color: #699328;
+}
