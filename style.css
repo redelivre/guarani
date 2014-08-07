@@ -2141,6 +2141,10 @@ object {
 		width: 67%;
 	}
 	
+	#primary.no-sidebar {
+		width: 100%;
+	}
+	
 	.single-attachment #primary {
 		float: none;
 		margin: 0 auto;
