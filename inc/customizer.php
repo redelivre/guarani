@@ -251,6 +251,22 @@ function guarani_customize_register( $wp_customize ) {
         'settings' 	=> 'guarani_favicon',
         'context'	=> 'guarani-favicon'
     ) ) );
+
+	// Comments FB
+	$wp_customize->add_section( 'guarani_fb_comments', array(
+			'title'    => __( 'Comentários via Facebook', 'guarani' ),
+			'priority' => 30,
+	) );
+	$wp_customize->add_setting( 'guarani_display_fb_comments', array(
+			'capability' => 'edit_theme_options',
+	) );
+	
+	$wp_customize->add_control( 'guarani_display_fb_comments', array(
+			'label'    => __( 'Exibe a caixa de comentários do Facebook', 'guarani' ),
+			'section'  => 'guarani_fb_comments',
+			'type'     => 'checkbox',
+			'settings' => 'guarani_display_fb_comments'
+	) );
     
     /*
 	 * Typography

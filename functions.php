@@ -273,4 +273,43 @@ function lock_plugins( $actions, $plugin_file, $plugin_data, $context ) {
 }
 add_filter( 'plugin_action_links', 'lock_plugins', 10, 4 );
 
+function guarani_fb_comments_box() {
+
+	$fb_appid = get_theme_mod( 'guarani_facebook_appid' );
+	?>
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=<?php echo $fb_appid; ?>&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	<script>
+		var siteLeadUrl = "<?php echo get_template_directory_uri() . "/js/site-lead.js" ?>";
+		Modernizr.load({
+	        test: Modernizr.mq("only screen and (min-width:64.063em)"),
+	        yep: siteLeadUrl
+		});
+	</script>
+
+	<?php
+}
+add_action( 'wp_footer', 'guarani_fb_comments_box' );
+
+/**
+ * Add Facebook OpenGraph meta properties
+ */
+function guarani_fb_opengraph() {
+	$fb_appid = get_theme_mod( 'guarani_facebook_appid' );
+
+	if ( ! empty ( $fb_appid ) ) {
+		echo '<meta property="fb:app_id" content="' . $fb_appid . '"/>';
+	}	
+}
+add_action( 'wp_head', 'guarani_fb_opengraph' );
+
+
 ?>
