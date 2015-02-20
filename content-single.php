@@ -60,14 +60,16 @@
 				} else {
 					$meta_text = __( 'This entry was posted in %1$s.', 'guarani' );
 				}
+				
+				printf(
+					$meta_text,
+					$category_list,
+					$tag_list
+				);
 
 			} // end check for categories on this blog
 
-			printf(
-				$meta_text,
-				$category_list,
-				$tag_list
-			);
+			
 		?>
 	    </div><!-- .entry-taxonomies -->
 	</footer><!-- .entry-meta -->
