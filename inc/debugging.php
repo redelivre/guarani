@@ -386,7 +386,7 @@ class WidgetAgenda extends WP_Widget {
 
     function WidgetAgenda() {
         $widget_ops = array('classname' => __CLASS__, 'description' => 'adiciona uma lista dos eventos');
-        parent::WP_Widget('widget_agenda', 'Agenda - Lista', $widget_ops);
+        parent::__construct('widget_agenda', 'Agenda - Lista', $widget_ops);
     }
 
     function widget($args, $instance) {

@@ -33,7 +33,7 @@ class Guarani_Custom_Posts_Widget extends WP_Widget {
 	 **/
 	function Guarani_Custom_Posts_Widget() {
 		$widget_ops = array( 'classname' => 'widget_guarani_custom_posts', 'description' => __( 'Displays the latest posts from a certain category', 'guarani' ) );
-		$this->WP_Widget( 'widget_guarani_custom_posts', __( 'Posts from a Category', 'guarani' ), $widget_ops );
+		$this->__construct( 'widget_guarani_custom_posts', __( 'Posts from a Category', 'guarani' ), $widget_ops );
 		$this->alt_option_name = 'widget_guarani_custom_posts';
 
 		add_action( 'save_post', array(&$this, 'flush_widget_cache' ) );
@@ -216,7 +216,7 @@ class Guarani_Featured_Page_Widget extends WP_Widget {
 	 **/
 	function Guarani_Featured_Page_Widget() {
 		$widget_ops = array( 'classname' => 'widget_guarani_featured_page', 'description' => __( 'Feature a page, showing its excerpt and thumbnail', 'guarani' ) );
-		$this->WP_Widget( 'widget_guarani_featured_page', __( 'Featured Page', 'guarani' ), $widget_ops );
+		$this->__construct( 'widget_guarani_featured_page', __( 'Featured Page', 'guarani' ), $widget_ops );
 		$this->alt_option_name = 'widget_guarani_featured_page';
 
 		add_action( 'save_post', array(&$this, 'flush_widget_cache' ) );
