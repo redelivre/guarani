@@ -175,6 +175,7 @@ class Guarani_Custom_Posts_Widget extends WP_Widget {
 		$title = isset( $instance['title']) ? esc_attr( $instance['title'] ) : '';
 		$category = isset( $instance['category'] ) ? (int) $instance['category'] : 0;
 		$number = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$feature = isset( $instance['feature'] ) ? boolval( $instance['feature'] ) : false;
 		?>
 		
 		<p>
@@ -193,7 +194,7 @@ class Guarani_Custom_Posts_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<input class="checkbox" type="checkbox" <?php checked( $instance['feature'], true ) ?> id="<?php echo $this->get_field_id( 'feature' ); ?>" name="<?php echo $this->get_field_name( 'feature' ); ?>" />
+			<input class="checkbox" type="checkbox" <?php checked( $feature, true ) ?> id="<?php echo $this->get_field_id( 'feature' ); ?>" name="<?php echo $this->get_field_name( 'feature' ); ?>" />
 			<label for="<?php echo $this->get_field_id( 'feature' ); ?>"><?php _ex( 'Show as a featured post (will override the number of posts option above to show only the last one)', 'guarani' ); ?></label><br />
         </p>
 		
