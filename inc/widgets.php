@@ -175,7 +175,7 @@ class Guarani_Custom_Posts_Widget extends WP_Widget {
 		$title = isset( $instance['title']) ? esc_attr( $instance['title'] ) : '';
 		$category = isset( $instance['category'] ) ? (int) $instance['category'] : 0;
 		$number = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
-		$feature = isset( $instance['feature'] ) ? boolval( $instance['feature'] ) : false;
+		$feature = isset( $instance['feature'] ) ? (bool) $instance['feature']  : false;
 		?>
 		
 		<p>
