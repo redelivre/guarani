@@ -260,12 +260,23 @@ function guarani_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'guarani_display_fb_comments', array(
 			'capability' => 'edit_theme_options',
 	) );
+	$wp_customize->add_setting( 'guarani_display_fb_comments_admins', array(
+			'capability' => 'edit_theme_options',
+	) );
 	
 	$wp_customize->add_control( 'guarani_display_fb_comments', array(
 			'label'    => __( 'Exibe a caixa de comentários do Facebook', 'guarani' ),
 			'section'  => 'guarani_fb_comments',
 			'type'     => 'checkbox',
 			'settings' => 'guarani_display_fb_comments'
+	) );
+	
+	$wp_customize->add_control( 'guarani_display_fb_comments_admins', array(
+			'label'    => __( 'Moderadores', 'guarani' ),
+			'section'  => 'guarani_fb_comments',
+			'type'     => 'text',
+			'settings' => 'guarani_display_fb_comments_admins',
+			'description' => 'Lista de IDs dos usuários do facebook que podem moderar comentários (separados por vírgula). Nota: é o "facebook user ID" e não nome de usuário.',
 	) );
     
     /*
@@ -459,4 +470,27 @@ function guarani_admin_customizer_menu_link() {
 
 }
 add_action ( 'admin_menu', 'guarani_admin_customizer_menu_link', 99 );
+
+
+function guarani_admin_customizer_facebook_comments_admins_head() {
+
+	$admins = trim(get_theme_mod('guarani_display_fb_comments_admins'));
+	
+	if (!$admins || empty($admins) || $admins == '')
+		return false;
+	
+	$ad = explode(',', $admins);
+	
+	if (is_array($ad)) {
+		foreach($ad as $a) {
+			$sa = sanitize_title($a);
+			echo "<meta property=\"fb:admins\" content=\"{$sa}\"/>\n";
+		}
+	} 
+	
+
+}
+
+add_action('wp_head', 'guarani_admin_customizer_facebook_comments_admins_head');
+
 ?>
